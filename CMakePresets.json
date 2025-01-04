@@ -1,0 +1,76 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 15
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "hidden": false,
+            "description": "Default configuration for NGINLib",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "NGINLIB_BUILD_TESTS": "OFF",
+                "NGINLIB_BUILD_EXAMPLES": "ON",
+                "NGINLIB_DEVELOPMENT_MODE": "ON"
+            }
+        },
+        {
+            "name": "development",
+            "description": "Development configuration with debug flags",
+            "inherits": "default",
+            "binaryDir": "${sourceDir}/build/development",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "NGINLIB_DEVELOPMENT_MODE": "ON"
+            }
+        },
+        {
+            "name": "release",
+            "description": "Release configuration for production builds",
+            "inherits": "default",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "NGINLIB_DEVELOPMENT_MODE": "OFF"
+            }
+        },
+        {
+            "name": "testing",
+            "description": "Configuration with tests enabled",
+            "inherits": "default",
+            "binaryDir": "${sourceDir}/build/testing",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "NGINLIB_BUILD_TESTS": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default",
+            "description": "Build the default configuration",
+            "hidden": false
+        },
+        {
+            "name": "development",
+            "configurePreset": "development",
+            "description": "Build the development configuration"
+        },
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "description": "Build the release configuration"
+        },
+        {
+            "name": "testing",
+            "configurePreset": "testing",
+            "description": "Build the configuration with tests enabled"
+        }
+    ]
+}

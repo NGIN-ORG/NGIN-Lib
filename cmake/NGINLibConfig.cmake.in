@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/NGINLibTargets.cmake")
+
+# Define the namespace for imported targets
+set(NGINLib_NAMESPACE "NGIN::")
+
+# Ensure the target is available
+check_required_components(NGINLib)
